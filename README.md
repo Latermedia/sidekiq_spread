@@ -51,6 +51,21 @@ MyWorker.perform_spread('arg1')
 `spread_duation` and `spread_method` can be set via `sidekiq_opions` in the worker class. If the same option is passed via the `perform_spread` method, it will override the `sidekiq_options` value for that job.
 
 ```ruby
+class MyWorker
+  include Sidekiq::Worker
+  include SidekiqSpread
+
+  sidekiq_options queue: :task, spread_duration: 2.hours, spread_method: :mod
+
+  def perform(arg)
+  	# ...
+  end
+end
+```
+
+### Other Exmaples
+
+```ruby
 # Will schedule this job sometime within the next day
 MyWorker.perform_spread('arg1', spread_duration: 1.day)
 
@@ -64,7 +79,8 @@ MyWorker.perform_spread('123456', spread_method: :mod)
 MyWorker.perform_spread(123456, spread_method: :mod, spread_mod_value: 3630)
 
 # Will schedule this job 1116 seconds from now:
-# first argument cast to an integer modulo the `spread_duration` (1 hour) in seconds (3600), plus 1 minute in seconds (60)
+# first argument cast to an integer modulo the `spread_duration` (1 hour) in seconds (3600),
+# plus 1 minute in seconds (60)
 # 123456 % 3600 + 60 = 1116
 MyWorker.perform_spread('123456', spread_method: :mod, spread_in: 1.minute)
 ```
@@ -78,6 +94,20 @@ Sidkiq doesn't place nicely with [named arguments](https://github.com/mperham/si
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+
+## Tests
+
+To run the tests:
+
+```bash
+rspec spec
+```
+
+Tests are currently run against the following Ruby version:
+- 2.5
+- 2.4
+- 2.3
+- 2.2
 
 ## Contributing
 
