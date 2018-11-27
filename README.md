@@ -32,7 +32,7 @@ class MyWorker
   include SidekiqSpread
 
   def perform(arg)
-  	# ...
+    # ...
   end
 end
 
@@ -58,7 +58,7 @@ class MyWorker
   sidekiq_options queue: :task, spread_duration: 2.hours, spread_method: :mod
 
   def perform(arg)
-  	# ...
+    # ...
   end
 end
 ```
