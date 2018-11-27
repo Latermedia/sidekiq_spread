@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['les@later.com']
 
   spec.summary       = "Add 'perform_spread' method to workers to allow for scheduling jobs over an interval of time."
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
+  # spec.description   = %q{TODO: Write a longer description or delete this line.}
   spec.homepage      = 'https://github.com/Latermedia/sidekiq_spread'
   spec.license       = 'MIT'
 
