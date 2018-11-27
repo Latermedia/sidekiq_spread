@@ -26,24 +26,7 @@ spec_shared: &spec_shared
                           --format RspecJunitFormatter \
                           --out /tmp/test-results/rspec-basic.xml \
                           --format progress \
-                          spec --tag ~ext:true --tag ~override:true
-    - run:
-        name: Run extended ENV specs
-        command: |
-          bundle exec rspec --format progress \
-                          --format RspecJunitFormatter \
-                          --out /tmp/test-results/rspec-ext.xml \
-                          --format progress \
-                          spec --tag ext:true
-
-    - run:
-        name: Run boolean override specs
-        command: |
-          bundle exec rspec --format progress \
-                          --format RspecJunitFormatter \
-                          --out /tmp/test-results/rspec-override.xml \
-                          --format progress \
-                          spec --tag override:true
+                          spec
 
     # collect reports
     - store_test_results:
