@@ -80,7 +80,7 @@ module SidekiqSpread
       num_opt_key_args = params.select { |p| p[0] == :key }.length
 
       # Sidekiq doesn't play nicely with named args
-      raise ArgumentError, "#{name}#perform should not use keyword args" if num_req_key_args.positive? || num_opt_key_args.positive?
+      raise ArgumentError, "#{name}#perform should not use keyword args" if num_req_key_args > 0 || num_opt_key_args > 0
 
       if has_options
         # if we popped something off to process, push it back on
