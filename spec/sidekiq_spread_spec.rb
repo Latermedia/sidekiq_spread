@@ -264,4 +264,3 @@ RSpec.describe 'SidekiqSpread' do
     end
   end
 end
-
